@@ -1,7 +1,11 @@
 #!/usr/bin/env python3
 
 
+import os
+import sys
 import unittest
+
+sys.path.append(os.path.dirname(os.getcwd()))
 
 RESPONSE= {
         "ip": "134.201.250.155",
