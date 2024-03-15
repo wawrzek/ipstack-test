@@ -5,6 +5,15 @@ After downloading it print selected (at the moment latitude and longitude) infor
 
 # Prerequisites
 
+- IPStack API key
+- request python library
+
+## IPStack API key
+The key can be obtain from the https://ipstack.com/dashboard website.
+The free plan allows to have 100 queries per month.
+Please note, that registration even for free plan, requires providing credit card details. 
+
+## Python libraries
 This is a Python program which required the requests library.
 If the library is not installed system wide all dependencies are defined in the requirements.txt file.
 They can be install a Python virtual environment.
@@ -18,7 +27,34 @@ cd ipstack-test
 pip install -r requirements.txt
 ```
 
-# Details
+**Alternatively, use provided Dockerfile to create an image and run the program in a container.**
+
+# Docker
+
+Along the python program Dockerfile to create a docker container is provided.
+The ip address is provided as a parameter of the run command.
+Docker address the dependencies issue, but still requires the IPStack API key.
+It should be mounted as a volume.
+
+Below, an example of the command to run the docker container.
+
+```
+docker run -v ./.ipstack_key:/app/.ipstack_key ${image_name}:latest $1
+```
+
+## Shell script to run the docker
+
+To make docker usage easier an extra script location.sh is provided.
+It runs the image, and, if required, builds it first.
+The script take the IP address as an input and mounts the .ipstack_key file.
+
+## Technical comments
+
+The image uses simple Python image based on the Alpine Linux.
+To avoid running the program (and pip) as the root user, extra appuser is created.
+
+
+# Python program details
 
 ## Input
 
