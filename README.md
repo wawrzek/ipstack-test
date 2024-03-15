@@ -39,14 +39,19 @@ It should be mounted as a volume.
 Below, an example of the command to run the docker container.
 
 ```
-docker run -v ./.ipstack_key:/app/.ipstack_key ${image_name}:latest $1
+docker run -v ./.ipstack_key:/app/.ipstack_key <IMAGENAME> <IPADDRESS>
 ```
+Please not that if the IPADDRESS is not provide the container fails back to the default IP of 10.1.1.1.
+This is not a valid IP, and the IPStack one be query.
 
 ## Shell script to run the docker
 
 To make docker usage easier an extra script location.sh is provided.
 It runs the image, and, if required, builds it first.
 The script take the IP address as an input and mounts the .ipstack_key file.
+
+./location.sh <IPADDRESS>
+
 
 ## Technical comments
 
