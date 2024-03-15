@@ -75,3 +75,16 @@ Columns are 12 characters wide with string aligned to right and separated by 2 s
 ## Errors
 In case of a problem program will exit with a error defined in the EXIT dictionary.
 The dictionary can be found in the script itself.
+The errors are triggered by invalid input or API key.
+
+## Getting response from the servers
+
+The program get the whole response from the server and process it (remove everything else the latitude and longitude) locally.
+The alternative would be to use the parameters from the API and modified the request url.
+E.g.
+
+```
+http://api.ipstack.com/134.201.250.155
+    ? access_key = 27563c51eb5ad7de6af22a24de51947e
+    & fields = latitude,longitude
+```
