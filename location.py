@@ -32,8 +32,10 @@ def checkKeyFile(f):
 
 def getResponse(ip, test=False):
     url = f"{URLBASE}/{ip}"
+    if not test:
         with open(KEYFILE) as f:
             access_key=f.readline().strip("\n")
+            print (access_key)
             if access_key.isalnum() and access_key.islower():
                 secret={'access_key': f.readline().strip("\n")}
             else:
