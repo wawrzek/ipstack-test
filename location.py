@@ -67,7 +67,6 @@ if __name__ == "__main__":
         print ("The access_key for the IPStack is missing. Should be: %s" %KEYFILE)
         sys.exit(EXIT["keyfile"])
     response = getResponse(ipAddress)
-    print (response)
     important = tuneOutput(response)
     printOutput(important)
 
