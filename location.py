@@ -8,7 +8,8 @@ import sys
 EXIT={
         "arguments": 4,
         "ip": 5,
-        "keyfile": 6,
+        "keyfile": 11,
+        "keyformat": 12,
         }
 
 URLBASE="http://api.ipstack.com/"
