@@ -49,11 +49,11 @@ def tuneOutput(response):
     important=["latitude", "longitude"]
     returns = []
     for i in important:
-        returns.append(response[i])
+        returns.append(float(response[i]))
     return returns
 
 def printOutput(output):
-    print ("%s %s" %(output[0], output[1]))
+    print ("{lat:>12.6f}  {long:>12.6f}".format(lat=output[0], long=output[1]))
 
 if __name__ == "__main__":
     if len(sys.argv) != 2:
