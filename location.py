@@ -36,7 +36,7 @@ def getResponse(ip, test=False):
         with open(KEYFILE) as f:
             access_key=f.readline().strip("\n")
             if access_key.isalnum() and access_key.islower():
-                secret={'access_key': f.readline().strip("\n")}
+                secret={'access_key': access_key}
             else:
                 print ("The format of the access key is wrong")
                 sys.exit(EXIT["keyformat"])
@@ -67,7 +67,8 @@ if __name__ == "__main__":
         print ("The access_key for the IPStack is missing. Should be: %s" %KEYFILE)
         sys.exit(EXIT["keyfile"])
     response = getResponse(ipAddress)
+    print (response)
     important = tuneOutput(response)
-    printOutput(output)
+    printOutput(important)
 
 
