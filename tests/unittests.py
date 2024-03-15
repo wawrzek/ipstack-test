@@ -4,6 +4,8 @@
 import os
 import sys
 import unittest
+from io import StringIO
+from unittest.mock import patch
 
 sys.path.append(os.path.dirname(os.getcwd()))
 
@@ -44,7 +46,8 @@ RESPONSE_GOOD= {
             "is_eu": False
         }
 }
-
+OUTPUT_GOOD=[34.0655517578125, -118.24053955078125]
+PRINT_GOOD="34.0655517578125 -118.24053955078125\n"
 
 from location import *
 class TestClass(unittest.TestCase):
@@ -61,7 +64,11 @@ class TestClass(unittest.TestCase):
     def test_request(self):
         self.assertEqual(getResponse("134.32.11.13", test=True),RESPONSE_NOKEY)
     def test_response(self):
-        self.assertEqual(tuneOutput(RESPONSE_GOOD), [34.0655517578125, -118.24053955078125])
+        self.assertEqual(tuneOutput(RESPONSE_GOOD), OUTPUT_GOOD)
+    def test_print(self):
+        with patch('sys.stdout', new=StringIO()) as fakeOut:
+            printOutput(OUTPUT_GOOD)
+            self.assertEqual(fakeOut.getvalue(), f"{PRINT_GOOD}")
 
 if __name__ == "__main__":
     unittest.main()

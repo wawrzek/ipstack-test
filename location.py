@@ -35,7 +35,6 @@ def getResponse(ip, test=False):
     if not test:
         with open(KEYFILE) as f:
             access_key=f.readline().strip("\n")
-            print (access_key)
             if access_key.isalnum() and access_key.islower():
                 secret={'access_key': f.readline().strip("\n")}
             else:
@@ -53,6 +52,9 @@ def tuneOutput(response):
         returns.append(response[i])
     return returns
 
+def printOutput(output):
+    print ("%s %s" %(output[0], output[1]))
+
 if __name__ == "__main__":
     if len(sys.argv) != 2:
         print ("Exactly one argument is required.")
@@ -65,4 +67,7 @@ if __name__ == "__main__":
         print ("The access_key for the IPStack is missing. Should be: %s" %KEYFILE)
         sys.exit(EXIT["keyfile"])
     response = getResponse(ipAddress)
+    important = tuneOutput(response)
+    printOutput(output)
+
 
