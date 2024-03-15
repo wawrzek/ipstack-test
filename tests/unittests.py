@@ -56,6 +56,8 @@ class TestClass(unittest.TestCase):
         self.assertFalse(checkIP("34.3234.23.4"))
     def test_ip_4(self):
         self.assertFalse(checkIP("ThisIsTest"))
+    def test_keylocation(self):
+        self.assertFalse(checkKeyFile("/wawrzek"))
     def test_request(self):
         self.assertEqual(getResponse("134.32.11.13", test=True),RESPONSE_NOKEY)
     def test_response(self):
