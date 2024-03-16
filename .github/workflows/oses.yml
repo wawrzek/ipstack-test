@@ -25,4 +25,3 @@ jobs:
         run: echo ${{ secrets.IPSTACK_KEY }} > .ipstack_key
       - name: Run the sotware
         run: python location.py $(curl checkip.amazonaws.com)
-

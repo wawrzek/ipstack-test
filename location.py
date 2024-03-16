@@ -70,5 +70,3 @@ if __name__ == "__main__":
     response = getResponse(ipAddress)
     important = tuneOutput(response)
     printOutput(important)
-
-

@@ -11,7 +11,7 @@ on:
     branches: [main]
 
 jobs:
-  build:
+  docker:
     runs-on: ubuntu-latest
   steps:
     - name: Download code
@@ -20,7 +20,7 @@ jobs:
       uses: docker/setup-qumu-action@v3
     - name: Set up Docker Buildx
       uses: docker/setup-buildx-action@v3
-    - name: Build and export to Docker
+    - name: Build and export to Docker (local)
       uses: docker/build-push-action@v5
       with:
         context: .
@@ -28,6 +28,6 @@ jobs:
         tags: ${{ env.TEST_TAG }}
     - name: Save secret
       run: echo ${{ secrets.IPSTACK_KEY }} > .ipstack_key
-    - name:
+    - name: Run Simple Test
       run: |
         docker run --rm -v ./.ipstack_key:/app/.ipstack_key ${{ env.TEST_TAG }} ; if [[ $? -eq 5 ]] then echo "OK" fi
