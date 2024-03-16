@@ -1,6 +1,6 @@
 # Description
 
-The program query the IPStack API to get the Geolocation of the provided IP.
+The program query the IPStack API to get geolocation data of the provided IP.
 After downloading it print selected (at the moment latitude and longitude) information onto standard output.
 
 # Prerequisites
@@ -9,14 +9,13 @@ After downloading it print selected (at the moment latitude and longitude) infor
 - request python library
 
 ## IPStack API key
-The key can be obtain from the https://ipstack.com/dashboard website.
+The key can be obtained from the https://ipstack.com/dashboard website.
 The free plan allows to have 100 queries per month.
-Please note, that registration even for free plan, requires providing credit card details. 
+Please note, that the registration, even for free plan, requires credit card details.
 
 ## Python libraries
-This is a Python program which required the requests library.
-If the library is not installed system wide all dependencies are defined in the requirements.txt file.
-They can be install a Python virtual environment.
+This is a Python program which required the *requests* library.
+Dependencies are defined in the requirements.txt file and can be installed into a Python virtual environment.
 
 ```
 python -m venv ipstack
@@ -31,8 +30,7 @@ pip install -r requirements.txt
 
 # Docker
 
-Along the python program Dockerfile to create a docker container is provided.
-The ip address is provided as a parameter of the run command.
+Along the python program the Dockerfile makes it possible to create a docker container.
 Docker address the dependencies issue, but still requires the IPStack API key.
 It should be mounted as a volume.
 
@@ -42,16 +40,18 @@ Below, an example of the command to run the docker container.
 docker run -v ./.ipstack_key:/app/.ipstack_key <IMAGENAME> <IPADDRESS>
 ```
 Please not that if the IPADDRESS is not provide the container fails back to the default IP of 10.1.1.1.
-This is not a valid IP, and the IPStack one be query.
+This is not a valid IP, and the IPStack won't be queried (to save API tokens).
 
 ## Shell script to run the docker
 
-To make docker usage easier an extra script location.sh is provided.
+To make the docker usage easier the location.sh script is provided.
 It runs the image, and, if required, builds it first.
 The script take the IP address as an input and mounts the .ipstack_key file.
+The invocation is:
 
+```
 ./location.sh <IPADDRESS>
-
+```
 
 ## Technical comments
 
@@ -69,7 +69,7 @@ It has to be a public IP address.
 ## Output
 
 The output of the program consist of two float numbers.
-They represent the
+They represent the:
 - latitude
 - longitude
 
