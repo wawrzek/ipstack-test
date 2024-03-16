@@ -30,4 +30,4 @@ jobs:
         run: echo ${{ secrets.IPSTACK_KEY }} > .ipstack_key
       - name: Run Simple Test
         run: |
-          docker run --rm -v ./.ipstack_key:/app/.ipstack_key ${{ env.TEST_TAG }}; if [[ $? -eq 5 ]]; then echo "OK"; fi
+          docker run --rm -v ./.ipstack_key:/app/.ipstack_key ${{ env.TEST_TAG }} | grep "global"
