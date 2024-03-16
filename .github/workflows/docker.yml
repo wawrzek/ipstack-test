@@ -13,21 +13,21 @@ on:
 jobs:
   docker:
     runs-on: ubuntu-latest
-  steps:
-    - name: Download code
-      uses: actions/checkout@v4
-    - name: Set up QEMU
-      uses: docker/setup-qumu-action@v3
-    - name: Set up Docker Buildx
-      uses: docker/setup-buildx-action@v3
-    - name: Build and export to Docker (local)
-      uses: docker/build-push-action@v5
-      with:
-        context: .
-        load: true
-        tags: ${{ env.TEST_TAG }}
-    - name: Save secret
-      run: echo ${{ secrets.IPSTACK_KEY }} > .ipstack_key
-    - name: Run Simple Test
-      run: |
-        docker run --rm -v ./.ipstack_key:/app/.ipstack_key ${{ env.TEST_TAG }} ; if [[ $? -eq 5 ]] then echo "OK" fi
+    steps:
+      - name: Download code
+        uses: actions/checkout@v4
+      - name: Set up QEMU
+        uses: docker/setup-qumu-action@v3
+      - name: Set up Docker Buildx
+        uses: docker/setup-buildx-action@v3
+      - name: Build and export to Docker (local)
+        uses: docker/build-push-action@v5
+        with:
+          context: .
+          load: true
+          tags: ${{ env.TEST_TAG }}
+      - name: Save secret
+        run: echo ${{ secrets.IPSTACK_KEY }} > .ipstack_key
+      - name: Run Simple Test
+        run: |
+          docker run --rm -v ./.ipstack_key:/app/.ipstack_key ${{ env.TEST_TAG }} ; if [[ $? -eq 5 ]] then echo "OK" fi
